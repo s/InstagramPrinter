@@ -26,7 +26,7 @@ class Api:
 
 
 	# Instagram Api Access Token
-	accessToken = '209007001.32dc0e6.fa922df8ffbb4cba90529aab1a45e3d9'
+	accessToken = ''
 
 	
 	# Hashtag to search
