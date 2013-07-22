@@ -26,9 +26,9 @@ class Api:
 
 
 	# Instagram Api Access Token
-	accessToken = ''
+	accessToken = '209007001.32dc0e6.fa922df8ffbb4cba90529aab1a45e3d9'
 
-
+	
 	# Hashtag to search
 	searchHashtag = 'SaidOzcanSaid'
 
@@ -111,6 +111,8 @@ class Api:
 
 				print '>>InstagramPrinter: HTTP Request Code is not 200'
 
+				pass
+
 			else:
 
 				responseJson = response.read()
@@ -159,17 +161,13 @@ class Api:
 		#user data
 		user = data['user']
 
-		#image array for standart resolution
-		standartResolutionImage =  data['images']['standard_resolution']
-
 		#comments
 		comments = data['comments']
 
 		#likes
 		likes = data['likes']
 
+		#image array for standart resolution
+		standartResolutionImage =  data['images']['standard_resolution']
 
 		self.apiConnectionFlag = 0
-
-		
-				
