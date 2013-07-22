@@ -9,8 +9,6 @@
 
 import Api
 
-import Printer
-
 class App:
 	
 	def __init__(self):
