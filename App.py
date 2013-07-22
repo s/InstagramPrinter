@@ -12,6 +12,6 @@ import Api
 class App:
 	
 	def __init__(self):
-		self.api = Api.Api()
+		Api.Api()
 
 app = App()
