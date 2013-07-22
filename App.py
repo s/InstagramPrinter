@@ -21,4 +21,4 @@ class App:
 	def drawLayout(self):
 		pass
 
-
+app = App()
