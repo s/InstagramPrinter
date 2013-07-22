@@ -15,6 +15,8 @@ import json
 
 import time
 
+import sys
+
 import Printer
 
 class Api:
@@ -28,7 +30,7 @@ class Api:
 
 
 	# Hashtag to search
-	searchHashtag = 'istanbul'
+	searchHashtag = 'SaidOzcanSaid'
 
 
 	# Instagram Api Method Type
@@ -42,9 +44,18 @@ class Api:
 	#Instagram data min_tag_id 
 	#minTagId
 
+	
 	#Instagram data max_tag_id
 	#maxTagId
 
+
+	#Api connection flag
+	#if methods below can't finish it's job within delay time, this flag will prevent send second request
+	apiConnectionFlag = 0
+
+
+	#Api connection delay time
+	delayTime = 30
 
 	##################
 	# method __init__
@@ -55,6 +66,8 @@ class Api:
 
 	def __init__(self):
 
+		print '>>InstagramPrinter: Initializing'
+		
 		#replacing hashtag with the reserved string
 		self.apiPath = self.apiPath.replace( '{$hashTag}' , self.searchHashtag  )
 
@@ -66,11 +79,11 @@ class Api:
 		#replacing access token with the reserved string
 		#self.apiPath = self.apiPath.replace( '{$maxTagId}' , self.accessToken )
 
-		while 1:
+		while self.apiConnectionFlag is 0:
 
 			self.connect2Api()
 
-			time.sleep(30)
+			time.sleep( self.delayTime )
 
 
 	##################
@@ -82,7 +95,9 @@ class Api:
 
 	def connect2Api(self):
 
-		print 'Connecting To Api'
+		print '>>InstagramPrinter: Connecting To Api'
+
+		self.apiConnectionFlag = 1
 
 		try:
 		
@@ -90,21 +105,23 @@ class Api:
 			
 			httpObject.request(self.method, self.apiPath)
 
-			response = httpObject.getresponse()
-
+			response = httpObject.getresponse()			
+			
 			if not response.status is 200:
 
-				print 'HTTP Request Code is not 200'
+				print '>>InstagramPrinter: HTTP Request Code is not 200'
 
 			else:
 
 				responseJson = response.read()
 
-				self.processData(responseJson)
+				self.processData( responseJson )
 
-		except:
+		except Exception as exc:
 
-			print 'An Exception Raised'
+			print '>>InstagramPrinter: An Exception Raised During Connecting To Api:' + str(exc)
+
+			sys.exit(0)
 
 	##################
 	# method processData
@@ -114,5 +131,45 @@ class Api:
 	##################
 
 	def processData( self, responseJson ):
-		pass
-		#print responseJson
+		
+		print '>>InstagramPrinter: Processing Data'		
+		
+		try:
+
+			for data in json.loads( responseJson )['data']:
+
+				self.saveDataAsPdf( data )
+				
+
+		except Exception as exc:
+
+			print '>>InstagramPrinter: An Exception Raised During processData:' + str(exc)
+
+	
+
+	##################
+	# method processData
+	# this method saves data as pdf
+	# @param self
+	# @return void
+	##################
+
+	def saveDataAsPdf(self, data):
+		
+		#user data
+		user = data['user']
+
+		#image array for standart resolution
+		standartResolutionImage =  data['images']['standard_resolution']
+
+		#comments
+		comments = data['comments']
+
+		#likes
+		likes = data['likes']
+
+
+		self.apiConnectionFlag = 0
+
+		
+				
