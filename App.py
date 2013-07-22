@@ -8,17 +8,12 @@
 #################################################
 
 import Api
+
 import Printer
 
 class App:
 	
 	def __init__(self):
-		pass
-
-	def connect2Api(self):
-		pass
-
-	def drawLayout(self):
-		pass
+		self.api = Api.Api()
 
 app = App()
