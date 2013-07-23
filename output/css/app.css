@@ -1,0 +1,147 @@
+html{
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+body{
+	background-color: #e9eaeb;
+}
+.container{
+	width: 1024px;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 60px;
+	clear: both;
+	height: 90%;
+}
+.content-left{
+	border-radius: 4px 0px 4px 4px;
+	margin-top: 5%;
+	float: left;
+	border: 1px solid #bababa;
+	width: 57%;
+}
+.content-right{
+	width: 40%;
+	margin-top: 5%;	
+	float: right;
+	background-color: #fff;
+	height: 612px;
+	border: 1px solid #bababa;
+	border-radius: 4px 4px 4px 0px;
+	position: relative;
+}		
+.likes{
+	height: auto;
+	min-height: 50px;
+	width: 100%;
+	margin-left: 10px;
+}
+
+.comment-avatar{
+	float: left;
+	width: 50px;
+}
+.comment-text{
+	float: left;
+}
+.comment{
+	clear: both;
+	margin-bottom: 10px;
+	min-height: 50px;
+	max-height: 100px;
+	margin-left: 10px;	
+}
+.comments{	
+	
+	margin-top: 10px;
+}
+.navbar{
+	width: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: url("//d36xtkk24g8jdx.cloudfront.net/bluebar/269a6bc/images/shared/noise-1.png");
+	background: -moz-linear-gradient(top,  #517fa4 0%, #306088 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#517fa4), color-stop(100%,#306088)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #517fa4 0%,#306088 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #517fa4 0%,#306088 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #517fa4 0%,#306088 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #517fa4 0%,#306088 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#517fa4', endColorstr='#306088',GradientType=0 ); /* IE6-8 */
+	background-position: 50% 50%;
+    border-bottom: 1px solid rgba(4, 40, 71, 0.8);
+    box-shadow: 0 1px 0 rgba(111, 151, 182, 0.5) inset, 0 -1px 0 rgba(111, 151, 182, 0.2) inset, 0 1px 1px rgba(0, 0, 0, 0.2);
+    height: 33px;			    
+    z-index: 100;	
+    padding-top: 5px;
+    padding-bottom: 5px;			
+    color: #fff;
+}
+.navbar:after{
+	content: ''
+}
+.page-title{
+	width: auto;
+	margin:0 auto;
+	font-size: 22px;
+	text-align: center;
+}		
+.post-details{
+	width: 100%;	
+	clear: both;
+	min-height: 60px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.post-owner-avatar{
+	float: left;
+	border: 1px solid #bababa;
+}
+.post-owner-username{
+	float: left;
+	text-align: left;
+	margin-left: 10px;
+	color: 	#517fa4;
+	font-weight: bold;
+}
+.post-date{
+	font-size: 14px;
+	margin-top: 5px;
+	font-weight: normal;
+	color: #bababa;
+}
+.seperator{
+	margin-bottom: 10px !important;
+	border-bottom: 2px solid #dddddd;
+	position: absolute;
+	left: 0px;
+	width: 100%;
+}
+.heart-icon{
+	float: left;
+	width: auto;
+	margin-top: 15px;	
+}
+.likes-text{
+	float: left;
+	margin-left: 10px;
+	margin-top: 15px;
+	font-size: 13px;
+	font-weight: bold;
+	color: 	#517fa4;
+}
+.comment-avatar{
+	float: left;
+	border: 1px solid #bababa;
+	width: auto;
+	margin-right: 10px;
+}
+.comment-owner{
+	float: left;
+	font-size: 13px;
+	color: 	#517fa4;
+	font-weight: bold;
+}
+.comment-text{
+	float: left;
+	font-size: 14px;
+}

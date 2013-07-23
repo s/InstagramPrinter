@@ -27,6 +27,8 @@ import stat
 
 import re
 
+import datetime
+
 #token falan yoksa alert olmali
 
 
@@ -43,7 +45,7 @@ class Api:
 
 
 	# Hashtag to search
-	searchHashtag = 'saidozcansaid'
+	searchHashtag = 'instagramapihashtag'
 
 
 	# Instagram Api Method Type
@@ -74,9 +76,8 @@ class Api:
 	#Output directory
 	outputDirectory = 'output/'
 
-	
-
-
+	#Html file page title
+	pageTitle = 'Dugun Hatirasi'
 
 
 
@@ -226,7 +227,9 @@ class Api:
 
 	def saveDataAsHtml(self, data):
 		
-		print '>>InstagramPrinter: Generating HTML'		
+		print '>>InstagramPrinter: Generating HTML'	
+
+		
 
 		fileName = str(data['created_time']) + '.html'
 
@@ -258,7 +261,16 @@ class Api:
 
 			sys.exit(0)
 		
-		template = template.replace( '{$title}', user['username'])
+		
+		print user
+		
+		template = template.replace( '{$title}', self.pageTitle )
+
+		template = template.replace( '{$postOwner}', user['username'])
+
+		template = template.replace( '{$postOwnerAvatar}', user['profile_picture'])
+
+		template = template.replace( '{$postDate}', datetime.datetime.fromtimestamp(int(data['created_time'])).strftime('%d %B %Y, %H:%M'))
 
 		template = template.replace( '{$photoUrl}', standartResolutionImage['url'] )
 
