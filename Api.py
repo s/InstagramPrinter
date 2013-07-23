@@ -132,11 +132,11 @@ class Api:
 
 		try:
 		
-			httpObject = httplib.HTTPSConnection( self.apiUrl )
+			httpsObject = httplib.HTTPSConnection( self.apiUrl )
 			
-			httpObject.request(self.method, self.apiPath)
+			httpsObject.request(self.method, self.apiPath)
 
-			response = httpObject.getresponse()			
+			response = httpsObject.getresponse()			
 			
 			if not response.status is 200:
 
