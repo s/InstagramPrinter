@@ -7,31 +7,7 @@
 # Instagram Printer
 #################################################
 
-import httplib
-
-import urllib2
-
-import json
-
-import time
-
-import sys
-
-import shutil
-
-import os
-
-import Printer
-
-import stat
-
-import re
-
-import datetime
-
-#token falan yoksa alert olmali
-
-
+import httplib, urllib2, json, time, sys, shutil, os, Printer, stat, re, datetime
 
 
 class Api:
