@@ -17,7 +17,19 @@ import time
 
 import sys
 
+import shutil
+
+import os
+
 import Printer
+
+
+
+
+
+
+
+
 
 class Api:
 
@@ -61,6 +73,14 @@ class Api:
 	#Output directory
 	outputDirectory = 'output/'
 
+	
+
+
+
+
+
+
+
 	##################
 	# method __init__
 	# the __init__ method
@@ -88,6 +108,13 @@ class Api:
 			self.connect2Api()
 
 			time.sleep( self.delayTime )
+
+
+	
+
+
+
+
 
 
 	##################
@@ -129,6 +156,14 @@ class Api:
 
 			sys.exit(0)
 
+	
+
+
+
+
+
+
+
 	##################
 	# method processData
 	# this method handles json object and creates semantic data
@@ -142,10 +177,17 @@ class Api:
 		
 		try:
 
-			for data in json.loads( responseJson )['data']:
+			data = json.loads( responseJson )['data']
 
-				self.saveDataAsPdf( data )
+			if len(data):
+
+				for d in data:
+
+					self.saveDataAsHtml( d )
+
+			else: 
 				
+				print '>>InstagramPrinter: No photos fetched'
 
 		except Exception as exc:
 
@@ -153,6 +195,13 @@ class Api:
 
 			sys.exit(0)
 	
+
+	
+
+
+
+
+
 
 	##################
 	# method processData
@@ -177,5 +226,32 @@ class Api:
 
 		#print data['created_time']
 
-		#fileName = str(data['created_time']) + '.pdf'
+		fileName = str(data['created_time']) + '.html'
 
+		source = self.outputDirectory + 'templates/main.html'
+		
+		destination = self.outputDirectory + 'views/'
+
+		try:
+						
+			shutil.copy( source, destination )
+
+			os.rename( destination + 'main.html' , destination + fileName )
+
+		except Exception as exc:
+
+			print '>>InstagramPrinter: An Exception Raised During generating view:' + str(exc)
+
+			sys.exit(0)
+
+		fileObject = open( destination + fileName , 'wb+')
+
+		fileContents = fileObject.read()
+
+		fileContents = fileContents.replace( '{$title}', user['username'] + '\'s photo' )
+
+		fileObject.write('%s'%fileContents)
+
+		#fileObject.close()
+
+		print fileContents
