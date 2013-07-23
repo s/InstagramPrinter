@@ -11,4 +11,4 @@ Quickly run the command: <code>python App.py</code>
 
 ![View Screen Shot](https://raw.github.com/saidozcan/InstagramPrinter/master/screenshots/view.png)
 
-Generated html files will be stored in /output/views/
+Generated html files will be stored in <code>/output/views/</code>
