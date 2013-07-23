@@ -282,11 +282,11 @@ class Api:
 
 			if likes['count'] > 2:
 
-				likeSentence = likes['data'][0]['username'] + ',' +  likes['data'][1]['username'] + ' ve ' + str(likes['count']-2) + ' kisi begendi.'
+				likeSentence = likes['data'][0]['username'] + ', ' +  likes['data'][1]['username'] + ' ve ' + str(likes['count']-2) + ' kisi begendi.'
 
 			elif likes['count'] is 2:
 
-				likeSentence = likes['data'][0]['username'] + ',' +  likes['data'][1]['username'] + ' begendi.'
+				likeSentence = likes['data'][0]['username'] + ', ' +  likes['data'][1]['username'] + ' begendi.'
 
 			else:
 

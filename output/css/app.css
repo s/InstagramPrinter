@@ -1,8 +1,16 @@
+@font-face{
+	font-family: ProximaNova;
+	src: url('../font/proximanova-webfont.ttf');
+}
+@font-face{
+	font-family: ProximaNovaBold;
+	src: url('../font/proximanova-bold-webfont.ttf');
+}
 html{
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-family: proximanova, serif;
 }
 body{
-	background-color: #e9eaeb;
+	background-color: #e9eaeb;	
 }
 .container{
 	width: 1024px;
@@ -80,10 +88,9 @@ body{
 	content: ''
 }
 .page-title{
-	width: auto;
-	margin:0 auto;
 	font-size: 22px;
 	text-align: center;
+	margin-top: 5px;
 }		
 .post-details{
 	width: 100%;	
@@ -100,8 +107,10 @@ body{
 	float: left;
 	text-align: left;
 	margin-left: 10px;
+	margin-top: 5px;
 	color: 	#517fa4;
-	font-weight: bold;
+	font-size: 18px;
+	font-family: ProximaNovaBold;
 }
 .post-date{
 	font-size: 14px;
@@ -125,8 +134,8 @@ body{
 	float: left;
 	margin-left: 10px;
 	margin-top: 15px;
-	font-size: 13px;
-	font-weight: bold;
+	font-size: 14px;
+	font-family: ProximaNovaBold;
 	color: 	#517fa4;
 }
 .comment-avatar{
@@ -144,4 +153,7 @@ body{
 .comment-text{
 	float: left;
 	font-size: 14px;
+	width: 350px;
+	word-wrap:break-word;
+	text-align: left;
 }
