@@ -9,7 +9,7 @@
 
 import httplib
 
-import urllib
+import urllib2
 
 import json
 
@@ -26,11 +26,11 @@ class Api:
 
 
 	# Instagram Api Access Token
-	accessToken = ''
+	accessToken = '209007001.32dc0e6.fa922df8ffbb4cba90529aab1a45e3d9'
 
-	
+
 	# Hashtag to search
-	searchHashtag = 'SaidOzcanSaid'
+	searchHashtag = 'saidozcansaid'
 
 
 	# Instagram Api Method Type
@@ -57,6 +57,10 @@ class Api:
 	#Api connection delay time
 	delayTime = 30
 
+
+	#Output directory
+	outputDirectory = 'output/'
+
 	##################
 	# method __init__
 	# the __init__ method
@@ -77,7 +81,7 @@ class Api:
 
 
 		#replacing access token with the reserved string
-		#self.apiPath = self.apiPath.replace( '{$maxTagId}' , self.accessToken )
+		#self.apiPath = self.apiPath.replace( '{$maxTagId}' , self.accessToken )		
 
 		while self.apiConnectionFlag is 0:
 
@@ -109,7 +113,7 @@ class Api:
 			
 			if not response.status is 200:
 
-				print '>>InstagramPrinter: HTTP Request Code is not 200'
+				print '>>InstagramPrinter: HTTP Response Code is not 200'
 
 				pass
 
@@ -147,16 +151,17 @@ class Api:
 
 			print '>>InstagramPrinter: An Exception Raised During processData:' + str(exc)
 
+			sys.exit(0)
 	
 
 	##################
 	# method processData
-	# this method saves data as pdf
+	# this method saves data as html
 	# @param self
 	# @return void
 	##################
 
-	def saveDataAsPdf(self, data):
+	def saveDataAsHtml(self, data):
 		
 		#user data
 		user = data['user']
@@ -170,4 +175,7 @@ class Api:
 		#image array for standart resolution
 		standartResolutionImage =  data['images']['standard_resolution']
 
-		self.apiConnectionFlag = 0
+		#print data['created_time']
+
+		#fileName = str(data['created_time']) + '.pdf'
+
