@@ -36,6 +36,9 @@ body{
 	border: 1px solid #bababa;
 	border-radius: 0px 4px 4px 0px;
 	position: relative;
+	-moz-box-shadow:    3px 3px 5px 0px #ccc;
+  	-webkit-box-shadow: 3px 3px 5px 0px #ccc;
+  	box-shadow:         3px 3px 5px 0px #ccc;
 }		
 .likes{
 	height: auto;
