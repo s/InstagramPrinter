@@ -21,7 +21,7 @@ body{
 	height: 90%;
 }
 .content-left{
-	border-radius: 4px 0px 4px 4px;
+	border-radius: 4px 4px 0px 4px;
 	margin-top: 5%;
 	float: left;
 	border: 1px solid #bababa;
@@ -29,17 +29,17 @@ body{
 }
 .content-right{
 	width: 40%;
-	margin-top: 5%;	
+	margin-top: 5.1%;	
 	float: right;
 	background-color: #fff;
-	height: 612px;
+	height: 610px;
 	border: 1px solid #bababa;
-	border-radius: 4px 4px 4px 0px;
+	border-radius: 0px 4px 4px 0px;
 	position: relative;
 }		
 .likes{
 	height: auto;
-	min-height: 50px;
+	min-height: 40px;
 	width: 100%;
 	margin-left: 10px;
 }
@@ -146,9 +146,9 @@ body{
 }
 .comment-owner{
 	float: left;
-	font-size: 13px;
+	font-size: 14px;
 	color: 	#517fa4;
-	font-weight: bold;
+	font-family: ProximaNovaBold;
 }
 .comment-text{
 	float: left;

@@ -77,7 +77,7 @@ class Api:
 	outputDirectory = 'output/'
 
 	#Html file page title
-	pageTitle = 'Dugun Hatirasi'
+	pageTitle = 'InstagramPrinter'
 
 
 
