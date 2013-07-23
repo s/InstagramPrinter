@@ -16,13 +16,12 @@
 			.content-left{
 				width: 60%;
 				margin-top: 5%;
-				clear: both;
+				
 				float: left;
 			}
 			.content-right{
 				width: 30%;
-				margin-top: -2.5%;
-				clear: both;
+				margin-top: 5%;				
 				float: right;
 			}		
 			.likes{
@@ -33,13 +32,15 @@
 			}
 			.comment-avatar{
 				float: left;
-				width: 150px;
+				width: 50px;
 			}
 			.comment-text{
-				float: right;
+				float: left;
 			}
 			.comment{
-				clear: both;				
+				clear: both;
+				margin-bottom: 30px;
+				min-height: 50px;				
 			}
 		</style>
 	</head>
@@ -74,8 +75,8 @@
 							<div class='comment-avatar'>
 								<img 
 									src="{$commentOwnerAvatar}"
-									width='150'
-									height='150'
+									width='50'
+									height='50'
 									alt='{$commentOwner}'
 								/>
 							</div>

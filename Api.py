@@ -314,4 +314,14 @@ class Api:
 			template = template.replace( '{$comments}' + template[startOfComments:endOfComments] + '{/$comments}', 'Henuz yorum yapilmadi.' )
 			
 
-		print template
+		#print template
+		#print data
+
+		newFilePath = destination + data['created_time'] + '.html'
+		
+		if True == os.path.exists(newFilePath):
+			os.remove(newFilePath)
+		
+		newFile = open( newFilePath, 'w+' )
+
+		newFile.write(template)
