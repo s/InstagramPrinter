@@ -250,7 +250,7 @@ class Api:
 
 		fileContents = fileContents.replace( '{$title}', user['username'] + '\'s photo' )
 
-		fileObject.write('%s'%fileContents)
+		#fileObject.write('%s'%fileContents)
 
 		#fileObject.close()
 
