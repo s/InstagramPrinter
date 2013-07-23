@@ -4,13 +4,43 @@
 		<title>{$title}</title>
 
 		<style>
+			html{
+				font-family: Consolas, monaco, monospace;	
+			}
 			.container{
 				width: 900px;
 				margin: 0 auto;
 				border:1px solid;
 				text-align: center;
 			}
-
+			.content-left{
+				width: 60%;
+				margin-top: 5%;
+				clear: both;
+				float: left;
+			}
+			.content-right{
+				width: 30%;
+				margin-top: -2.5%;
+				clear: both;
+				float: right;
+			}		
+			.likes{
+				height: auto;
+			}
+			.border{
+				border: 1px solid #808080;
+			}
+			.comment-avatar{
+				float: left;
+				width: 150px;
+			}
+			.comment-text{
+				float: right;
+			}
+			.comment{
+				clear: both;				
+			}
 		</style>
 	</head>
 
@@ -19,7 +49,43 @@
 				
 			<h1>{$title}</h1>
 
+			<div class='content-left border'>
+
+				<img 
+					src='{$photoUrl}'
+					width='{$photoWidth}'
+					height='{$photoHeight}'
+					alt='{$title}'
+				/>
+
+			</div>
 			
+			<div class='content-right border'>
+
+				<h4>Begenenler</h4>
+
+				<div class='likes border'>{$likes}</div>
+
+				<h4>Yorumlar</h4>
+
+				<div class='comments border'>
+					{$comments}
+						<div class='comment'>
+							<div class='comment-avatar'>
+								<img 
+									src="{$commentOwnerAvatar}"
+									width='150'
+									height='150'
+									alt='{$commentOwner}'
+								/>
+							</div>
+
+							<div class='comment-text'>
+								{$commentOwner}:{$commentText}
+							</div>
+						</div>
+					{/$comments}
+				</div>
 		</div>
 	</body>
 

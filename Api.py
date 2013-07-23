@@ -23,10 +23,11 @@ import os
 
 import Printer
 
+import stat
 
+import re
 
-
-
+#token falan yoksa alert olmali
 
 
 
@@ -38,7 +39,7 @@ class Api:
 
 
 	# Instagram Api Access Token
-	accessToken = ''
+	accessToken = '209007001.32dc0e6.fa922df8ffbb4cba90529aab1a45e3d9'
 
 
 	# Hashtag to search
@@ -91,6 +92,19 @@ class Api:
 	def __init__(self):
 
 		print '>>InstagramPrinter: Initializing'
+
+		if self.searchHashtag is None:
+
+			print '>>InstagramPrinter: Missing argument: hashtag'
+
+			sys.exit(0)
+
+		if self.accessToken is None:
+
+			print '>>InstagramPrinter: Missing argument: access token'
+
+			sys.exit(0)
+
 		
 		#replacing hashtag with the reserved string
 		self.apiPath = self.apiPath.replace( '{$hashTag}' , self.searchHashtag  )
@@ -212,6 +226,14 @@ class Api:
 
 	def saveDataAsHtml(self, data):
 		
+		print '>>InstagramPrinter: Generating HTML'		
+
+		fileName = str(data['created_time']) + '.html'
+
+		source = self.outputDirectory + 'templates/main.html'
+		
+		destination = self.outputDirectory + 'views/'
+
 		#user data
 		user = data['user']
 
@@ -224,34 +246,72 @@ class Api:
 		#image array for standart resolution
 		standartResolutionImage =  data['images']['standard_resolution']
 
-		#print data['created_time']
-
-		fileName = str(data['created_time']) + '.html'
-
-		source = self.outputDirectory + 'templates/main.html'
-		
-		destination = self.outputDirectory + 'views/'
-
 		try:
-						
-			shutil.copy( source, destination )
 
-			os.rename( destination + 'main.html' , destination + fileName )
+			with open( source ) as file:
+
+				template = file.read()
 
 		except Exception as exc:
 
 			print '>>InstagramPrinter: An Exception Raised During generating view:' + str(exc)
 
 			sys.exit(0)
+		
+		template = template.replace( '{$title}', user['username'])
 
-		fileObject = open( destination + fileName , 'wb+')
+		template = template.replace( '{$photoUrl}', standartResolutionImage['url'] )
 
-		fileContents = fileObject.read()
+		template = template.replace( '{$photoWidth}', str(standartResolutionImage['width']) )
 
-		fileContents = fileContents.replace( '{$title}', user['username'] + '\'s photo' )
+		template = template.replace( '{$photoHeight}', str(standartResolutionImage['height']) )
 
-		#fileObject.write('%s'%fileContents)
+		if likes['count'] > 0:
 
-		#fileObject.close()
+			if likes['count'] > 2:
 
-		print fileContents
+				likeSentence = likes['data'][0]['username'] + ',' +  likes['data'][1]['username'] + ' ve ' + str(likes['count']-2) + ' kisi begendi.'
+
+			elif likes['count'] is 2:
+
+				likeSentence = likes['data'][0]['username'] + ',' +  likes['data'][1]['username'] + ' begendi.'
+
+			else:
+
+				likeSentence = likes['data'][0]['username'] + ' begendi.'
+
+		else:
+			
+			likeSentence = 'Henuz kimse begenmedi'
+			
+
+		template = template.replace( '{$likes}', likeSentence )
+
+		startOfComments = template.index( '{$comments}' ) + len( '{$comments}' )
+
+		endOfComments = template.index( '{/$comments}', startOfComments )
+
+		commentsBlockWithData = ''
+
+		if comments['count'] > 0:
+			
+			for comment in comments['data']:
+				
+				commentsBlock = template[startOfComments:endOfComments]
+
+				commentsBlock = commentsBlock.replace( '{$commentOwner}', comment['from']['username'] )
+
+				commentsBlock = commentsBlock.replace( '{$commentOwnerAvatar}', comment['from']['profile_picture'] )
+
+				commentsBlock = commentsBlock.replace( '{$commentText}', comment['text'] )
+				
+				commentsBlockWithData += commentsBlock
+
+			template = template.replace( '{$comments}' + template[startOfComments:endOfComments] + '{/$comments}', commentsBlockWithData )
+
+		else:
+		
+			template = template.replace( '{$comments}' + template[startOfComments:endOfComments] + '{/$comments}', 'Henuz yorum yapilmadi.' )
+			
+
+		print template
