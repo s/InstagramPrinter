@@ -262,8 +262,6 @@ class Api:
 			sys.exit(0)
 		
 		
-		print user
-		
 		template = template.replace( '{$title}', self.pageTitle )
 
 		template = template.replace( '{$postOwner}', user['username'])
@@ -325,9 +323,7 @@ class Api:
 		
 			template = template.replace( '{$comments}' + template[startOfComments:endOfComments] + '{/$comments}', 'Henuz yorum yapilmadi.' )
 			
-
-		#print template
-		#print data
+		
 
 		newFilePath = destination + data['created_time'] + '.html'
 		
@@ -337,3 +333,7 @@ class Api:
 		newFile = open( newFilePath, 'w+' )
 
 		newFile.write(template)
+
+		newFile.close()
+
+		print '>>InstagramPrinter: ' + data['created_time'] + '.html has been generated.' 
