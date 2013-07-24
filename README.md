@@ -18,7 +18,7 @@ Quickly type the command: <code>python App.py</code> in the folder that includes
     <code>Api.py</code> : Handles Instagram Api connection and generates html files.<br/>
     <code>Printer.py</code> : Prints generated html files with connected printer.<br/>
   
-   <h3>Output: (Views-Templates-Assets)</h3><br/>
+   <h3>Output: (Public data)</h3><br/>
     <code>assets</code>          : Contains css and font files.<br/>
     <code>templets</code>        : Contains original templates.<br/>
     <code>views</code>           : Contains generated views.<br/>
