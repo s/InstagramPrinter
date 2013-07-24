@@ -41,6 +41,3 @@ Quickly type the command: <code>python App.py</code> in the folder that includes
 ![Command Line Screen Shot](https://raw.github.com/saidozcan/InstagramPrinter/master/screenshots/terminal.png)
 
 ![View Screen Shot](https://raw.github.com/saidozcan/InstagramPrinter/master/screenshots/view.png)
-
-Generated html files will be stored in <code>/output/views/</code>
-
