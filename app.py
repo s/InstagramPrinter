@@ -7,7 +7,7 @@
 # Instagram Printer
 #################################################
 
-from classes.Api import Api
+from classes.Api import *
 
 if __name__ == '__main__':	
 	Api()
