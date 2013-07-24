@@ -14,16 +14,17 @@ Quickly run the command: <code>python App.py</code>
 Generated html files will be stored in <code>/output/views/</code>
 
 View Template Tags:
+================
 
-{$title}                    : Page Title
-{$photoUrl}                 : Url of photo
-{$photoWidth}               : Width of photo
-{$photoHeight}              : Height of photo
-{$postOwnerAvatar}          : Avatar of post owner
-{$postOwner}                : Screen username of post owner
-{$postDate}                 : Create date of post
-{$likes}                    : People who likes this post
-{$comments} .. {/$comments} : Comments block
-{$commentOwnerAvatar}       : Avatar of owner of any comment
-{$commentOwner}             : Screen username of owner of any comment
-{$commentText}              : Text of comment
+<code>{$title}</code>                    : Page Title
+<code>{$photoUrl}</code>                 : Url of photo
+<code>{$photoWidth}</code>               : Width of photo
+<code>{$photoHeight}</code>              : Height of photo
+<code>{$postOwnerAvatar}</code>          : Avatar of post owner
+<code>{$postOwner}</code>                : Screen username of post owner
+<code>{$postDate}</code>                 : Create date of post
+<code>{$likes}</code>                    : People who likes this post
+<code>{$comments} .. {/$comments}</code> : Comments block
+<code>{$commentOwnerAvatar}</code>       : Avatar of owner of any comment
+<code>{$commentOwner}</code>             : Screen username of owner of any comment
+<code>{$commentText}</code>              : Text of comment
