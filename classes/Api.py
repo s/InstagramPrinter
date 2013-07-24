@@ -66,7 +66,7 @@ class Api:
 	# @return void
 	##################
 
-	def __init__(self):
+	def __init__(self ):
 
 		print '>>InstagramPrinter: Initializing'
 
