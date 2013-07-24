@@ -9,7 +9,6 @@ Then clones the template <code>main.html</code> and replaces tags with returning
 
 ##Installation and Run
 
-Run the command below to clone repository to your local.
 ```
 $ git clone git://github.com/saidozcan/InstagramPrinter.git ~/InstagramPrinter
 $ cd ~/InstagramPrinter
