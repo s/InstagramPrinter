@@ -9,9 +9,5 @@
 
 import Api
 
-class App:
-	
-	def __init__(self):
-		Api.Api()
-
-app = App()
+if __name__ == '__main__':	
+	Api.Api()
