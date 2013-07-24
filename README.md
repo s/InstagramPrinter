@@ -9,7 +9,7 @@ Then clones the template <code>main.html</code> and replaces tags with returning
 
 ##Run
 
-Quickly type the command: <code>python App.py</code> in the folder that includes <code>App.py</code>.
+Quickly type the command: <code>python app.py</code> in the folder that includes <code>App.py</code>.
 
 
 ##Skeletal
