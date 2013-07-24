@@ -20,7 +20,7 @@ Quickly type the command: <code>python App.py</code> in the folder that includes
   
    <h3>Output: (Public data)</h3><br/>
     <code>assets</code>          : Contains css and font files.<br/>
-    <code>templets</code>        : Contains original templates.<br/>
+    <code>templates</code>        : Contains original templates.<br/>
     <code>views</code>           : Contains generated views.<br/>
 
 ##Api Class Members
