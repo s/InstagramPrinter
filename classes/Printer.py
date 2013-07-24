@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #################################################
-# print.py     							        
+# Printer.py     							        
 # 22 July 2013
 # Said ÖZCAN									
 # Instagram Printer
