@@ -9,8 +9,8 @@ Quickly type the command: <code>python App.py</code> in the folder that includes
 
 
 ##skeletal
-  ```###Classes
-    ```<code>App.py</code> : Application runner file.
+  ###Classes
+    <code>App.py</code> : Application runner file.
     <code>Api.py</code> : Handles Instagram Api connection and generates html files.
     <code>Printer.py</code> : Prints generated html files with connected printer.
 
