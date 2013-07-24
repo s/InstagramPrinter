@@ -18,7 +18,6 @@ $ python app.py
 
 ##Skeletal
   <h3>Classes: (Core python files)</h3><br/>
-    <code>App.py</code> : Application runner file.<br/>
     <code>Api.py</code> : Handles Instagram Api connection and generates html files.<br/>
     <code>Printer.py</code> : Prints generated html files with connected printer.<br/>
   
