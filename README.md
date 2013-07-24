@@ -8,12 +8,16 @@ A Python application that searchs and prints Instagram photos with the given has
 Quickly type the command: <code>python App.py</code> in the folder that includes <code>App.py</code>.
 
 
-##skeletal
-  ###Classes
+##Skeletal
+  ###Classes:Core python files<br/>
     <code>App.py</code> : Application runner file.
     <code>Api.py</code> : Handles Instagram Api connection and generates html files.
     <code>Printer.py</code> : Prints generated html files with connected printer.
-
+  
+  ###Output:Views-Templates-Assets<br/>
+    ####assets          : Contains css and font files.
+    ####templets        : Contains original templates.
+    ####views           : Contains generated views.
 
 ##View Template Tags:
 
