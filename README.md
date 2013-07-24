@@ -13,12 +13,12 @@ Quickly type the command: <code>python App.py</code> in the folder that includes
 
 
 ##Skeletal
-  ## Classes:Core python files<br/>
+  ## Classes: (Core python files)<br/>
     <code>App.py</code> : Application runner file.<br/>
     <code>Api.py</code> : Handles Instagram Api connection and generates html files.<br/>
     <code>Printer.py</code> : Prints generated html files with connected printer.<br/>
   
-  ###Output:Views-Templates-Assets<br/>
+   <h2>Output: (Views-Templates-Assets)</h2><br/>
     ####assets          : Contains css and font files.<br/>
     ####templets        : Contains original templates.<br/>
     ####views           : Contains generated views.<br/>
