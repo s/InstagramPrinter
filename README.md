@@ -7,15 +7,14 @@ Application first connects to Instagram Api and fetchs matched photo datas.<br/>
 
 Then clones the template <code>main.html</code> and replaces tags with returning data from Api.
 
-##Installation
+##Installation and Run
 
 Run the command below to clone repository to your local.
-<code>$ git clone git://github.com/saidozcan/InstagramPrinter.git ~/InstagramPrinter</code>
-
-##Run
-
-Quickly type the command: <code>python app.py</code>
-
+<code>
+$ git clone git://github.com/saidozcan/InstagramPrinter.git ~/InstagramPrinter
+$ cd ~/InstagramPrinter
+$ python app.py
+</code>
 
 ##Skeletal
   <h3>Classes: (Core python files)</h3><br/>
