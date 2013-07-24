@@ -9,5 +9,9 @@
 
 from classes.Api import *
 
-if __name__ == '__main__':	
-	Api()
+try:
+	if __name__ == '__main__':	
+		Api()
+		
+except KeyboardInterrupt:
+	print '>>InstagramPrinter: Application will shut down.'

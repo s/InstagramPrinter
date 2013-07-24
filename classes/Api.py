@@ -98,6 +98,8 @@ class Api:
 
 			self.connect2Api()
 
+			print '>>InstagramPrinter: Application will sleep for ' + str(self.delayTime) + ' seconds.'
+
 			time.sleep( self.delayTime )
 
 
