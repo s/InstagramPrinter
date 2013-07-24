@@ -20,16 +20,15 @@ Quickly type the command: <code>python App.py</code> in the folder that includes
     ####views           : Contains generated views.<br/>
 
 ##Api Class Members
-  ###apiUrl             : Instagram api url. Default: <code>api.instagram.com</code><br/>
-  ###accessToken        : Instagram api access token.<br/>
-  ###searchHashtag      : Hashtag to search. Default:<code>InstagramPrinter</code><br/>
-  ###method             : Instagram hashtag search api requires <code>GET</code> method.<br/>
-  ###apiPath            : Instagram api path. Default: <code>/v1/tags/HASHTAG/media/recent?access_token=ACCESSTOKEN</code><br/>
-  ###apiConnectionFlag  : If there is a connection flag is 1. Default: <code>0</code><br/>
-  ###delayTime          : Delay time between each api request. Default: <code>30</code>(seconds) <br/>
-  ###outputDirectory    : Directory that contains generated html files. Default: <code>output/</code><br/>
-  ###pageTitle          : Page title of generated html file. Default: <code>InstagramPrinter</code><br/>
-  
+  <code>apiUrl           </code>  : Instagram api url. Default: <code>api.instagram.com</code><br/>
+  <code>accessToken      </code>  : Instagram api access token.<br/>
+	<code>searchHashtag    </code>  : Hashtag to search. Default:<code>InstagramPrinter</code><br/>
+	<code>method           </code>  : Instagram hashtag search api requires <code>GET</code> method.<br/>
+	<code>apiPath          </code>  : Instagram api path. Default: <code>/v1/tags/HASHTAG/media/recent?access_token=ACCESSTOKEN</code><br/>
+	<code>apiConnectionFlag</code>  : If there is a connection flag is 1. Default: <code>0</code><br/>
+	<code>delayTime        </code>  : Delay time between each api request. Default: <code>30</code>(seconds) <br/>
+	<code>outputDirectory  </code>  : Directory that contains generated html files. Default: <code>output/</code><br/>
+	<code>pageTitle        </code>  : Page title of generated html file. Default: <code>InstagramPrinter</code><br/>
 
 ##View Template Tags:
 
