@@ -94,7 +94,7 @@ class Api:
 		#replacing access token with the reserved string
 		#self.apiPath = self.apiPath.replace( '{$maxTagId}' , self.accessToken )		
 
-		while self.apiConnectionFlag is 0:
+		while 1:
 
 			self.connect2Api()
 
