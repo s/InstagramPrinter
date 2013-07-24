@@ -16,15 +16,15 @@ Generated html files will be stored in <code>/output/views/</code>
 View Template Tags:
 ================
 
-<code>{$title}</code>                    : Page Title
-<code>{$photoUrl}</code>                 : Url of photo
-<code>{$photoWidth}</code>               : Width of photo
-<code>{$photoHeight}</code>              : Height of photo
-<code>{$postOwnerAvatar}</code>          : Avatar of post owner
-<code>{$postOwner}</code>                : Screen username of post owner
-<code>{$postDate}</code>                 : Create date of post
-<code>{$likes}</code>                    : People who likes this post
-<code>{$comments} .. {/$comments}</code> : Comments block
-<code>{$commentOwnerAvatar}</code>       : Avatar of owner of any comment
-<code>{$commentOwner}</code>             : Screen username of owner of any comment
-<code>{$commentText}</code>              : Text of comment
+<code>{$title}</code>                    : Page Title<br/>
+<code>{$photoUrl}</code>                 : Url of photo<br/>
+<code>{$photoWidth}</code>               : Width of photo<br/>
+<code>{$photoHeight}</code>              : Height of photo<br/>
+<code>{$postOwnerAvatar}</code>          : Avatar of post owner<br/>
+<code>{$postOwner}</code>                : Screen username of post owner<br/>
+<code>{$postDate}</code>                 : Create date of post<br/>
+<code>{$likes}</code>                    : People who likes this post<br/>
+<code>{$comments} .. {/$comments}</code> : Comments block<br/>
+<code>{$commentOwnerAvatar}</code>       : Avatar of owner of any comment<br/>
+<code>{$commentOwner}</code>             : Screen username of owner of any comment<br/>
+<code>{$commentText}</code>              : Text of comment<br/>
