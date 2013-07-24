@@ -19,9 +19,9 @@ Quickly type the command: <code>python App.py</code> in the folder that includes
     <code>Printer.py</code> : Prints generated html files with connected printer.<br/>
   
    <h3>Output: (Views-Templates-Assets)</h3><br/>
-    ####assets          : Contains css and font files.<br/>
-    ####templets        : Contains original templates.<br/>
-    ####views           : Contains generated views.<br/>
+    <code>assets</code>          : Contains css and font files.<br/>
+    <code>templets</code>        : Contains original templates.<br/>
+    <code>views</code>           : Contains generated views.<br/>
 
 ##Api Class Members
   <code>apiUrl           </code>  : Instagram api url. Default: <code>api.instagram.com</code><br/>
