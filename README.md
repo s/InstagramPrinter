@@ -13,7 +13,7 @@ Quickly run the command: <code>python App.py</code>
 
 Generated html files will be stored in <code>/output/views/</code>
 
-######View Template Tags:
+##View Template Tags:
 
 
 <code>{$title}</code>                    : Page Title<br/>
