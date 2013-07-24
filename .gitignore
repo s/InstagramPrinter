@@ -7,4 +7,4 @@ output/.DS_Store
 
 output/templates/.DS_Store
 
-output/views/*.html
+output/views/*
