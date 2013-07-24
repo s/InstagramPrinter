@@ -11,6 +11,8 @@ html{
 }
 body{
 	background-color: #e9eaeb;	
+	width: 100%;
+	min-width: 100%;
 }
 .container{
 	width: 1024px;
@@ -65,12 +67,13 @@ body{
 	
 	margin-top: 10px;
 }
-.navbar{
-	width: 100%;
+.navbar{	
 	position: fixed;
+	width: 100%;
 	top: 0px;
 	left: 0px;
 	background: url("//d36xtkk24g8jdx.cloudfront.net/bluebar/269a6bc/images/shared/noise-1.png");
+	background-color: #517fa4;
 	background: -moz-linear-gradient(top,  #517fa4 0%, #306088 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#517fa4), color-stop(100%,#306088)); /* Chrome,Safari4+ */
 	background: -webkit-linear-gradient(top,  #517fa4 0%,#306088 100%); /* Chrome10+,Safari5.1+ */
