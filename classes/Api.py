@@ -21,7 +21,7 @@ class Api:
 
 
 	# Hashtag to search
-	searchHashtag = 'instagramapihashtag'
+	searchHashtag = 'InstagramPrinter'
 
 
 	# Instagram Api Method Type
@@ -29,15 +29,7 @@ class Api:
 
 
 	#Instagram Api path
-	apiPath = '/v1/tags/{$hashTag}/media/recent?access_token={$accessToken}&max_id={$maxTagId}'
-	
-
-	#Instagram data min_tag_id 
-	#minTagId
-
-	
-	#Instagram data max_tag_id
-	#maxTagId
+	apiPath = '/v1/tags/{$hashTag}/media/recent?access_token={$accessToken}'
 
 
 	#Api connection flag
@@ -54,8 +46,6 @@ class Api:
 
 	#Html file page title
 	pageTitle = 'InstagramPrinter'
-
-
 
 
 
@@ -90,39 +80,36 @@ class Api:
 		#replacing access token with the reserved string
 		self.apiPath = self.apiPath.replace( '{$accessToken}' , self.accessToken )
 
+		if True is self.check_network():
 
-		#replacing access token with the reserved string
-		#self.apiPath = self.apiPath.replace( '{$maxTagId}' , self.accessToken )		
+			while 1:
 
-		while 1:
+				while self.apiConnectionFlag is 1:
+					pass
 
-			self.connect2Api()
+				self.connect_to_api()
 
-			print '>>InstagramPrinter: Application will sleep for ' + str(self.delayTime) + ' seconds.'
+				print '>>InstagramPrinter: Application will sleep for ' + str(self.delayTime) + ' seconds.'
 
-			time.sleep( self.delayTime )
+				time.sleep( self.delayTime )
+		else:
 
-
-	
-
-
-
-
+			print '>>InstagramPrinter: No network connection'
 
 
 	##################
-	# method connect2Api
+	# method connect_to_api
 	# this method connects to instagram api
 	# @param self
 	# @return void
 	##################
 
-	def connect2Api(self):
+	def connect_to_api(self):
 
 		print '>>InstagramPrinter: Connecting To Api'
 
 		self.apiConnectionFlag = 1
-
+		#check network connection
 		try:
 		
 			httpsObject = httplib.HTTPSConnection( self.apiUrl )
@@ -141,7 +128,7 @@ class Api:
 
 				responseJson = response.read()
 
-				self.processData( responseJson )
+				self.process_data( responseJson )
 
 		except Exception as exc:
 
@@ -149,72 +136,60 @@ class Api:
 
 			sys.exit(0)
 
-	
-
-
-
-
-
-
 
 	##################
-	# method processData
+	# method process_data
 	# this method handles json object and creates semantic data
 	# @param self
 	# @return void
 	##################
 
-	def processData( self, responseJson ):
+	def process_data( self, responseJson ):
 		
 		print '>>InstagramPrinter: Processing Data'		
 		
 		try:
 
-			data = json.loads( responseJson )['data']
+			response = json.loads( responseJson )
+
+			data = response['data']
 
 			if len(data):
 
 				for d in data:
-
-					self.saveDataAsHtml( d )
+					
+					self.save_data_as_html( d )
 
 			else: 
 				
 				print '>>InstagramPrinter: No photos fetched'
 
 		except Exception as exc:
-
-			print '>>InstagramPrinter: An Exception Raised During processData:' + str(exc)
+			
+			print '>>InstagramPrinter: An Exception Raised During process_data:' + str(exc)
 
 			sys.exit(0)
 	
 
-	
-
-
-
-
-
-
 	##################
-	# method processData
+	# method process_data
 	# this method saves data as html
 	# @param self
 	# @return void
 	##################
 
-	def saveDataAsHtml(self, data):
+	def save_data_as_html(self, data):
 		
-		print '>>InstagramPrinter: Generating HTML'	
+		print '>>InstagramPrinter: Will Generate HTML if not exists before'	
 
-		
+		self.apiConnectionFlag = 0
 
 		fileName = str(data['created_time']) + '.html'
 
 		source = self.outputDirectory + 'templates/main.html'
 		
 		destination = self.outputDirectory + 'views/'
-
+		
 		#user data
 		user = data['user']
 
@@ -226,92 +201,116 @@ class Api:
 
 		#image array for standart resolution
 		standartResolutionImage =  data['images']['standard_resolution']
+		
+		if True == os.path.exists( destination + fileName):
+			print '>>InstagramPrinter: File ' + fileName + ' already exists. Will pass this time.'		
+			return 
+		else:
+		
+			try:
+				
+				with open( source ) as file:
+
+					template = file.read()
+
+			except Exception as exc:
+
+				print '>>InstagramPrinter: An Exception Raised During generating view:' + str(exc)
+
+				sys.exit(0)
+			
+			
+			template = template.replace( '{$title}', self.pageTitle )
+
+			template = template.replace( '{$postOwner}', user['username'])
+
+			template = template.replace( '{$postOwnerAvatar}', user['profile_picture'])
+
+			template = template.replace( '{$postDate}', datetime.datetime.fromtimestamp(int(data['created_time'])).strftime('%d %B %Y, %H:%M'))
+
+			template = template.replace( '{$photoUrl}', standartResolutionImage['url'] )
+
+			template = template.replace( '{$photoWidth}', str(standartResolutionImage['width']) )
+
+			template = template.replace( '{$photoHeight}', str(standartResolutionImage['height']) )
+
+			if likes['count'] > 0:
+
+				if likes['count'] > 2:
+					
+					likeSentence = likes['data'][0]['username'] + ', ' +  likes['data'][1]['username'] + ' ve ' + str(likes['count']-2) + ' kisi begendi.'
+
+				elif likes['count'] is 2:
+
+					likeSentence = likes['data'][0]['username'] + ', ' +  likes['data'][1]['username'] + ' begendi.'
+
+				else:
+
+					likeSentence = likes['data'][0]['username'] + ' begendi.'
+
+			else:
+				
+				likeSentence = 'Henuz kimse begenmedi'
+				
+
+			template = template.replace( '{$likes}', likeSentence )
+
+			startOfComments = template.index( '{$comments}' ) + len( '{$comments}' )
+
+			endOfComments = template.index( '{/$comments}', startOfComments )
+
+			commentsBlockWithData = ''
+
+			if comments['count'] > 0:
+				
+				for comment in comments['data']:
+					
+					commentsBlock = template[startOfComments:endOfComments]
+
+					commentsBlock = commentsBlock.replace( '{$commentOwner}', comment['from']['username'] )
+
+					commentsBlock = commentsBlock.replace( '{$commentOwnerAvatar}', comment['from']['profile_picture'] )
+
+					commentsBlock = commentsBlock.replace( '{$commentText}', comment['text'] )
+					
+					commentsBlockWithData += commentsBlock
+
+				template = template.replace( '{$comments}' + template[startOfComments:endOfComments] + '{/$comments}', commentsBlockWithData )
+
+			else:
+			
+				template = template.replace( '{$comments}' + template[startOfComments:endOfComments] + '{/$comments}', 'Henuz yorum yapilmadi.' )
+				
+			
+
+			newFilePath = destination + data['created_time'] + '.html'
+			
+			if True == os.path.exists(newFilePath):
+				os.remove(newFilePath)
+			
+			newFile = open( newFilePath, 'w+' )
+
+			newFile.write(template)
+
+			newFile.close()
+
+			print '>>InstagramPrinter: ' + data['created_time'] + '.html has been generated.' 
+
+	##################
+	# method check_network
+	# this method checks network connection
+	# @param self
+	# @return void
+	##################
+
+	def check_network(self):
 
 		try:
 
-			with open( source ) as file:
+			response=urllib2.urlopen('http://google.com',timeout=1)
 
-				template = file.read()
+			return True
 
-		except Exception as exc:
+		except:
 
-			print '>>InstagramPrinter: An Exception Raised During generating view:' + str(exc)
-
-			sys.exit(0)
-		
-		
-		template = template.replace( '{$title}', self.pageTitle )
-
-		template = template.replace( '{$postOwner}', user['username'])
-
-		template = template.replace( '{$postOwnerAvatar}', user['profile_picture'])
-
-		template = template.replace( '{$postDate}', datetime.datetime.fromtimestamp(int(data['created_time'])).strftime('%d %B %Y, %H:%M'))
-
-		template = template.replace( '{$photoUrl}', standartResolutionImage['url'] )
-
-		template = template.replace( '{$photoWidth}', str(standartResolutionImage['width']) )
-
-		template = template.replace( '{$photoHeight}', str(standartResolutionImage['height']) )
-
-		if likes['count'] > 0:
-
-			if likes['count'] > 2:
-
-				likeSentence = likes['data'][0]['username'] + ', ' +  likes['data'][1]['username'] + ' ve ' + str(likes['count']-2) + ' kisi begendi.'
-
-			elif likes['count'] is 2:
-
-				likeSentence = likes['data'][0]['username'] + ', ' +  likes['data'][1]['username'] + ' begendi.'
-
-			else:
-
-				likeSentence = likes['data'][0]['username'] + ' begendi.'
-
-		else:
-			
-			likeSentence = 'Henuz kimse begenmedi'
-			
-
-		template = template.replace( '{$likes}', likeSentence )
-
-		startOfComments = template.index( '{$comments}' ) + len( '{$comments}' )
-
-		endOfComments = template.index( '{/$comments}', startOfComments )
-
-		commentsBlockWithData = ''
-
-		if comments['count'] > 0:
-			
-			for comment in comments['data']:
-				
-				commentsBlock = template[startOfComments:endOfComments]
-
-				commentsBlock = commentsBlock.replace( '{$commentOwner}', comment['from']['username'] )
-
-				commentsBlock = commentsBlock.replace( '{$commentOwnerAvatar}', comment['from']['profile_picture'] )
-
-				commentsBlock = commentsBlock.replace( '{$commentText}', comment['text'] )
-				
-				commentsBlockWithData += commentsBlock
-
-			template = template.replace( '{$comments}' + template[startOfComments:endOfComments] + '{/$comments}', commentsBlockWithData )
-
-		else:
-		
-			template = template.replace( '{$comments}' + template[startOfComments:endOfComments] + '{/$comments}', 'Henuz yorum yapilmadi.' )
-			
-		
-
-		newFilePath = destination + data['created_time'] + '.html'
-		
-		if True == os.path.exists(newFilePath):
-			os.remove(newFilePath)
-		
-		newFile = open( newFilePath, 'w+' )
-
-		newFile.write(template)
-
-		newFile.close()
-
-		print '>>InstagramPrinter: ' + data['created_time'] + '.html has been generated.' 
+			return False

@@ -14,4 +14,5 @@ try:
 		Api()
 
 except KeyboardInterrupt:
+	
 	print '>>InstagramPrinter: Application will shut down.'
