@@ -10,7 +10,7 @@ Then clones the template <code>main.html</code> and replaces tags with returning
 ##Installation and Run
 
 ```
-$ git clone git://github.com/saidozcan/InstagramPrinter.git ~/InstagramPrinter
+$ git clone git://github.com/s/InstagramPrinter.git ~/InstagramPrinter
 $ cd ~/InstagramPrinter
 $ python app.py
 ```
