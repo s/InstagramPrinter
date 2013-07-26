@@ -32,8 +32,7 @@ $ python app.py
 	<code>method           </code>  : Instagram hashtag search api requires <code>GET</code> method.<br/>
 	<code>apiPath          </code>  : Instagram api path. Default: <code>/v1/tags/HASHTAG/media/recent?access_token=ACCESSTOKEN</code><br/>
 	<code>apiConnectionFlag</code>  : If there is a connection flag is 1. Default: <code>0</code><br/>
-	<code>delayTime        </code>  : Delay time between each api request. Default: <code>30</code>(seconds) <br/>
-	<code>outputDirectory  </code>  : Directory that contains generated html files. Default: <code>output/</code><br/>
+	<code>delayTime        </code>  : Delay time between each api request. Default: <code>30</code>(seconds) <br/>	
 	<code>pageTitle        </code>  : Page title of generated html file. Default: <code>InstagramPrinter</code><br/>
 
 ##View Template Tags:

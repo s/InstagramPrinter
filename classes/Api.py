@@ -7,6 +7,8 @@
 # Instagram Printer
 #################################################
 
+#>>InstagramPrinter: An Exception Raised During process_data:list index out of range cozulemedi.
+
 import httplib, urllib2, json, time, sys, shutil, os, Printer, stat, re, datetime
 
 
@@ -188,7 +190,11 @@ class Api:
 
 		source = self.outputDirectory + 'templates/main.html'
 		
-		destination = self.outputDirectory + 'views/'
+		destination = self.outputDirectory + 'views/#' + self.searchHashtag + '/'
+
+		if not os.path.exists( destination ):
+			os.makedirs( destination )
+			os.chmod( destination, 0777)
 		
 		#user data
 		user = data['user']
@@ -234,13 +240,15 @@ class Api:
 
 			template = template.replace( '{$photoHeight}', str(standartResolutionImage['height']) )
 
-			if likes['count'] > 0:
+			likeCount = len(likes['data'])
 
-				if likes['count'] > 2:
+			if likeCount > 0:
+
+				if likeCount > 2:
 					
-					likeSentence = likes['data'][0]['username'] + ', ' +  likes['data'][1]['username'] + ' ve ' + str(likes['count']-2) + ' kisi begendi.'
+					likeSentence = likes['data'][0]['username'] + ', ' +  likes['data'][1]['username'] + ' ve ' + str(likeCount-2) + ' kisi begendi.'
 
-				elif likes['count'] is 2:
+				elif likeCount is 2:
 
 					likeSentence = likes['data'][0]['username'] + ', ' +  likes['data'][1]['username'] + ' begendi.'
 
