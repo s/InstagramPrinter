@@ -23,7 +23,7 @@ $ python app.py
    <h3>Output: (Public data)</h3><br/>
     <code>assets</code>          : Contains css and font files.<br/>
     <code>templates</code>        : Contains original templates.<br/>
-    <code>views</code>           : Contains generated views.<br/>
+    <code>views</code>           : Contains generated views. Generated views will be in the folder for e.g <code>views/#InstagramPrinter</code><br/>
 
 ##Api Class Members
   <code>apiUrl           </code>  : Instagram api url. Default: <code>api.instagram.com</code><br/>

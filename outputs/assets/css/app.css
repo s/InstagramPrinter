@@ -7,7 +7,7 @@
 	src: url('../font/proximanova-bold-webfont.ttf');
 }
 html{
-	font-family: proximanova, serif;
+	font-family: ProximaNova, serif;
 }
 body{
 	background-color: #e9eaeb;	
@@ -26,21 +26,21 @@ body{
 	border-radius: 4px 4px 0px 4px;
 	margin-top: 5%;
 	float: left;
-	border: 1px solid #bababa;
+	
 	width: 57%;
 }
 .content-right{
 	width: 40%;
-	margin-top: 5.1%;	
+	margin-top: 5%;	
 	float: right;
 	background-color: #fff;
 	height: 610px;
 	border: 1px solid #bababa;
 	border-radius: 0px 4px 4px 0px;
 	position: relative;
-	-moz-box-shadow:    3px 3px 5px 0px #ccc;
-  	-webkit-box-shadow: 3px 3px 5px 0px #ccc;
-  	box-shadow:         3px 3px 5px 0px #ccc;
+	-moz-box-shadow:    1px 1px 5px 0px #ccc;
+  	-webkit-box-shadow: 1px 1px 5px 0px #ccc;
+  	box-shadow:         1px 1px 5px 0px #ccc;
 }		
 .likes{
 	height: auto;
@@ -69,11 +69,10 @@ body{
 }
 .navbar{	
 	position: fixed;
-	width: 100%;
+	width: 1070px;
 	top: 0px;
 	left: 0px;
 	background: url("//d36xtkk24g8jdx.cloudfront.net/bluebar/269a6bc/images/shared/noise-1.png");
-	background-color: #517fa4;
 	background: -moz-linear-gradient(top,  #517fa4 0%, #306088 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#517fa4), color-stop(100%,#306088)); /* Chrome,Safari4+ */
 	background: -webkit-linear-gradient(top,  #517fa4 0%,#306088 100%); /* Chrome10+,Safari5.1+ */
@@ -81,6 +80,7 @@ body{
 	background: -ms-linear-gradient(top,  #517fa4 0%,#306088 100%); /* IE10+ */
 	background: linear-gradient(to bottom,  #517fa4 0%,#306088 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#517fa4', endColorstr='#306088',GradientType=0 ); /* IE6-8 */
+	background-color: #517fa4;
 	background-position: 50% 50%;
     border-bottom: 1px solid rgba(4, 40, 71, 0.8);
     box-shadow: 0 1px 0 rgba(111, 151, 182, 0.5) inset, 0 -1px 0 rgba(111, 151, 182, 0.2) inset, 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -89,6 +89,7 @@ body{
     padding-top: 5px;
     padding-bottom: 5px;			
     color: #fff;
+    font-family: ProximaNova, serif;
 }
 .navbar:after{
 	content: ''

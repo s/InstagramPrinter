@@ -44,7 +44,7 @@ class Api:
 
 
 	#Output directory
-	outputDirectory = 'output/'
+	outputDirectory = 'outputs/'
 
 	#Html file page title
 	pageTitle = 'InstagramPrinter'
@@ -287,7 +287,7 @@ class Api:
 
 			else:
 			
-				template = template.replace( '{$comments}' + template[startOfComments:endOfComments] + '{/$comments}', 'Henuz yorum yapilmadi.' )
+				template = template.replace( '{$comments}' + template[startOfComments:endOfComments] + '{/$comments}', 'Yorum yapilmadi.' )
 				
 			
 
