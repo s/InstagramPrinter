@@ -71,6 +71,8 @@ class Api:
 
 		self.get_configurations()
 
+		#validate method required
+
 		if self.searchHashtag is None:
 
 			print '>>InstagramPrinter: Missing argument: hashtag'
@@ -355,5 +357,8 @@ class Api:
 			
 			configurations.close()
 		
-		except Exception as exc:
-			print '>>InstagramPrinter: Error setting configuration: ' + str(exc)
+		except KeyError as exc:
+			
+			print '>>TwitterPrinter: Validation error. Check credientals'
+
+			sys.exit(0)
