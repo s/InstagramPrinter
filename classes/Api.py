@@ -7,9 +7,7 @@
 # Instagram Printer
 #################################################
 
-#>>InstagramPrinter: An Exception Raised During process_data:list index out of range cozulemedi.
-
-import httplib, urllib2, json, time, sys, shutil, os, Printer, stat, re, datetime
+import httplib, urllib2, json, time, sys, shutil, os, Printer, stat, re, datetime, yaml
 
 
 class Api:
@@ -26,6 +24,14 @@ class Api:
 	searchHashtag = 'InstagramPrinter'
 
 
+	#Api connection delay time
+	delayTime = 30
+
+
+	#Html file page title
+	pageTitle = 'InstagramPrinter'
+
+
 	# Instagram Api Method Type
 	method = 'GET'
 
@@ -39,17 +45,10 @@ class Api:
 	apiConnectionFlag = 0
 
 
-	#Api connection delay time
-	delayTime = 30
-
-
 	#Output directory
 	outputDirectory = 'outputs/'
 
-	#Html file page title
-	pageTitle = 'InstagramPrinter'
-
-
+	
 
 	##################
 	# method __init__
@@ -61,6 +60,8 @@ class Api:
 	def __init__(self):
 
 		print '>>InstagramPrinter: Initializing'
+
+		self.get_configurations()
 
 		if self.searchHashtag is None:
 
@@ -92,8 +93,8 @@ class Api:
 				self.connect_to_api()
 
 				print '>>InstagramPrinter: Application will sleep for ' + str(self.delayTime) + ' seconds.'
-
-				time.sleep( self.delayTime )
+				
+				time.sleep( float(self.delayTime) )
 		else:
 
 			print '>>InstagramPrinter: No network connection'
@@ -109,7 +110,7 @@ class Api:
 	def connect_to_api(self):
 
 		print '>>InstagramPrinter: Connecting To Api'
-
+		
 		self.apiConnectionFlag = 1
 		#check network connection
 		try:
@@ -320,5 +321,31 @@ class Api:
 			return True
 
 		except:
-
 			return False
+
+	##################
+	# method get_configurations
+	# this method gets the configurations of application from config.yaml
+	# @param self
+	# @return void
+	##################
+	def get_configurations(self):		
+		
+		try:
+		
+			configurations = open('config.yaml')
+		
+			data = yaml.safe_load(configurations)
+
+			self.accessToken = data['accessToken']
+
+			self.searchHashtag = data['searchHashtag']
+
+			self.delayTime = data['delayTime']
+
+			self.pageTitle = data['pageTitle']
+			
+			configurations.close()
+		
+		except Exception as exc:
+			print '>>InstagramPrinter: Error setting configuration: ' + str(exc)
