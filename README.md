@@ -1,7 +1,7 @@
 InstagramPrinter
 ================
 
-A Python application that searchs and prints Instagram photos with the given hashtag.
+A Python application that searchs and prints(soon) Instagram photos with the given hashtag.
 
 Application first connects to Instagram Api and fetchs matched photo datas.<br/>
 
