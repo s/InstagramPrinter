@@ -26,13 +26,9 @@ $ python app.py
     <code>templates</code>        : Contains original templates.<br/>
     <code>views</code>           : Contains generated views. Generated views will be in the folder for e.g <code>views/#InstagramPrinter</code><br/>
 
-##Api Class Members
-  <code>apiUrl           </code>  : Instagram api url. Default: <code>api.instagram.com</code><br/>
+##Configuration (config.yaml)  
   <code>accessToken      </code>  : Instagram api access token.<br/>
-	<code>searchHashtag    </code>  : Hashtag to search. Default:<code>InstagramPrinter</code><br/>
-	<code>method           </code>  : Instagram hashtag search api requires <code>GET</code> method.<br/>
-	<code>apiPath          </code>  : Instagram api path. Default: <code>/v1/tags/HASHTAG/media/recent?access_token=ACCESSTOKEN</code><br/>
-	<code>apiConnectionFlag</code>  : If there is a connection flag is 1. Default: <code>0</code><br/>
+	<code>searchHashtag    </code>  : Hashtag to search. Default:<code>InstagramPrinter</code><br/>	
 	<code>delayTime        </code>  : Delay time between each api request. Default: <code>30</code>(seconds) <br/>	
 	<code>pageTitle        </code>  : Page title of generated html file. Default: <code>InstagramPrinter</code><br/>
 
