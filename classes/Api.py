@@ -12,24 +12,12 @@ import httplib, urllib2, json, time, sys, shutil, os, Printer, stat, re, datetim
 
 class Api:
 
+
+	############ static members ############
+
+
 	# Instagram Api Url
 	apiUrl = 'api.instagram.com'
-
-
-	# Instagram Api Access Token
-	accessToken = '209007001.32dc0e6.fa922df8ffbb4cba90529aab1a45e3d9'
-
-
-	# Hashtag to search
-	searchHashtag = 'InstagramPrinter'
-
-
-	#Api connection delay time
-	delayTime = 30
-
-
-	#Html file page title
-	pageTitle = 'InstagramPrinter'
 
 
 	# Instagram Api Method Type
@@ -48,6 +36,26 @@ class Api:
 	#Output directory
 	outputDirectory = 'outputs/'
 
+
+
+
+
+	
+	############ dynamic members from config.yaml ############
+
+	# Instagram Api Access Token
+	accessToken = ''
+
+
+	# Hashtag to search
+	searchHashtag = ''
+
+	#Api connection delay time
+	delayTime = 0
+
+
+	#Html file page title
+	pageTitle = ''
 	
 
 	##################
@@ -74,7 +82,6 @@ class Api:
 			print '>>InstagramPrinter: Missing argument: access token'
 
 			sys.exit(0)
-
 		
 		#replacing hashtag with the reserved string
 		self.apiPath = self.apiPath.replace( '{$hashTag}' , self.searchHashtag  )
@@ -156,11 +163,11 @@ class Api:
 			response = json.loads( responseJson )
 
 			data = response['data']
-
+			
 			if len(data):
 
 				for d in data:
-					
+						
 					self.save_data_as_html( d )
 
 			else: 
@@ -213,7 +220,7 @@ class Api:
 			print '>>InstagramPrinter: File ' + fileName + ' already exists. Will pass this time.'		
 			return 
 		else:
-		
+			
 			try:
 				
 				with open( source ) as file:
@@ -296,11 +303,12 @@ class Api:
 			
 			if True == os.path.exists(newFilePath):
 				os.remove(newFilePath)
+				
 			
 			newFile = open( newFilePath, 'w+' )
-
-			newFile.write(template)
-
+			
+			newFile.write( template.encode('utf8') )
+			
 			newFile.close()
 
 			print '>>InstagramPrinter: ' + data['created_time'] + '.html has been generated.' 
