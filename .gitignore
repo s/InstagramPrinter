@@ -1,9 +1,5 @@
 *.pyc
 
-.DS_Store
-
-outputs/.DS_Store
-
-outputs/templates/.DS_Store
+*.DS_Store
 
 outputs/views/*
