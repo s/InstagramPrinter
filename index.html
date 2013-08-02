@@ -49,7 +49,7 @@
         <h1>
 <a name="instagramprinter" class="anchor" href="#instagramprinter"><span class="octicon octicon-link"></span></a>InstagramPrinter</h1>
 
-<p>A Python application that searchs and prints Instagram photos with the given hashtag.</p>
+<p>A Python application that searchs and prints(soon) Instagram photos with the given hashtag.</p>
 
 <p>Application first connects to Instagram Api and fetchs matched photo datas.<br></p>
 
@@ -67,11 +67,11 @@ $ python app.py
 <a name="skeletal" class="anchor" href="#skeletal"><span class="octicon octicon-link"></span></a>Skeletal</h2>
 
 <p></p><h3>
-<a name="classes-core-python-files" class="anchor" href="#classes-core-python-files"><span class="octicon octicon-link"></span></a>Classes: (Core python files)</h3><br><code>Api.py</code> : Handles Instagram Api connection and generates html files.<br><code>Printer.py</code> : Prints generated html files with connected printer.<br><p></p><h3>
+<a name="classes-core-python-files" class="anchor" href="#classes-core-python-files"><span class="octicon octicon-link"></span></a>Classes: (Core python files)</h3><br><code>Api.py</code> : Handles Instagram Api connection and generates html files.<br><p></p><h3>
 <a name="output-public-data" class="anchor" href="#output-public-data"><span class="octicon octicon-link"></span></a>Output: (Public data)</h3><br><code>assets</code>          : Contains css and font files.<br><code>templates</code>        : Contains original templates.<br><code>views</code>           : Contains generated views. Generated views will be in the folder for e.g <code>views/#InstagramPrinter</code><br><h2>
-<a name="api-class-members" class="anchor" href="#api-class-members"><span class="octicon octicon-link"></span></a>Api Class Members</h2>
+<a name="configuration-configyaml" class="anchor" href="#configuration-configyaml"><span class="octicon octicon-link"></span></a>Configuration (config.yaml)</h2>
 
-<p><code>apiUrl           </code>  : Instagram api url. Default: <code>api.instagram.com</code><br><code>accessToken      </code>  : Instagram api access token.<br><code>searchHashtag    </code>  : Hashtag to search. Default:<code>InstagramPrinter</code><br><code>method           </code>  : Instagram hashtag search api requires <code>GET</code> method.<br><code>apiPath          </code>  : Instagram api path. Default: <code>/v1/tags/HASHTAG/media/recent?access_token=ACCESSTOKEN</code><br><code>apiConnectionFlag</code>  : If there is a connection flag is 1. Default: <code>0</code><br><code>delayTime        </code>  : Delay time between each api request. Default: <code>30</code>(seconds) <br><br><code>pageTitle        </code>  : Page title of generated html file. Default: <code>InstagramPrinter</code><br></p>
+<p><code>accessToken      </code>  : Instagram api access token.<br><code>searchHashtag    </code>  : Hashtag to search. Default:<code>InstagramPrinter</code><br><code>delayTime        </code>  : Delay time between each api request. Default: <code>30</code>(seconds)<br><br><code>pageTitle        </code>  : Page title of generated html file. Default: <code>InstagramPrinter</code><br></p>
 
 <h2>
 <a name="view-template-tags" class="anchor" href="#view-template-tags"><span class="octicon octicon-link"></span></a>View Template Tags:</h2>
@@ -81,9 +81,12 @@ $ python app.py
 <h2>
 <a name="screen-shots" class="anchor" href="#screen-shots"><span class="octicon octicon-link"></span></a>Screen Shots</h2>
 
-<p><img src="https://raw.github.com/saidozcan/InstagramPrinter/master/screenshots/terminal.png" alt="Command Line Screen Shot"></p>
-
 <p><img src="https://raw.github.com/saidozcan/InstagramPrinter/master/screenshots/view.png" alt="View Screen Shot"></p>
+
+<h2>
+<a name="to-do" class="anchor" href="#to-do"><span class="octicon octicon-link"></span></a>TO-DO</h2>
+
+<p>-&gt;Log files.</p>
       </section>
 
       <footer>
