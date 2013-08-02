@@ -30,6 +30,7 @@ $ python app.py
 	<code>searchHashtag    </code>  : Hashtag to search. Default:<code>InstagramPrinter</code><br/>	
 	<code>delayTime        </code>  : Delay time between each api request. Default: <code>30</code>(seconds)<br/>	
 	<code>pageTitle        </code>  : Page title of generated html file. Default: <code>InstagramPrinter</code><br/>
+  <code>templateFileName </code>  : Name of template file. Default: <code>main.html</code><br/>
 
 ##View Template Tags:
 

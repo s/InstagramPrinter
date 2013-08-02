@@ -7,7 +7,7 @@
 # Instagram Printer
 #################################################
 
-import httplib, urllib2, json, time, sys, shutil, os, Printer, stat, re, datetime, yaml
+import httplib, urllib2, json, time, sys, shutil, os, stat, re, datetime, yaml
 
 
 class Api:
@@ -198,7 +198,7 @@ class Api:
 
 		fileName = str(data['created_time']) + '.html'
 
-		source = self.outputDirectory + 'templates/main.html'
+		source = self.outputDirectory + 'templates/' + self.templateFileName
 		
 		destination = self.outputDirectory + 'views/#' + self.searchHashtag + '/'
 
@@ -354,6 +354,8 @@ class Api:
 			self.delayTime = data['delayTime']
 
 			self.pageTitle = data['pageTitle']
+
+			self.templateFileName = data['templateFileName']
 			
 			configurations.close()
 		
