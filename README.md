@@ -51,6 +51,4 @@ $ python app.py
 
 ##Screen Shots
 
-![Command Line Screen Shot](https://raw.github.com/saidozcan/InstagramPrinter/master/screenshots/terminal.png)
-
 ![View Screen Shot](https://raw.github.com/saidozcan/InstagramPrinter/master/screenshots/view.png)
