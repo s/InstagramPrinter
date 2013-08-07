@@ -70,20 +70,6 @@ class Api:
 		print '>>InstagramPrinter: Initializing'
 
 		self.get_configurations()
-
-		#validate method required
-
-		if self.searchHashtag is None:
-
-			print '>>InstagramPrinter: Missing argument: hashtag'
-
-			sys.exit(0)
-
-		if self.accessToken is None:
-
-			print '>>InstagramPrinter: Missing argument: access token'
-
-			sys.exit(0)
 		
 		#replacing hashtag with the reserved string
 		self.apiPath = self.apiPath.replace( '{$hashTag}' , self.searchHashtag  )
@@ -158,7 +144,7 @@ class Api:
 
 	def process_data( self, responseJson ):
 		
-		print '>>InstagramPrinter: Processing Data'		
+		print '>>InstagramPrinter: Processing Data'
 		
 		try:
 
