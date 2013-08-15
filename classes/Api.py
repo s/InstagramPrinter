@@ -82,7 +82,7 @@ class Api:
 
 			while 1:
 
-				while self.apiConnectionFlag is 1:
+				while self.apiConnectionFlag is 1: #waits until current process is over
 					pass
 
 				self.connect_to_api()
@@ -328,8 +328,13 @@ class Api:
 	def get_configurations(self):		
 		
 		try:
-		
-			configurations = open('config.yaml')
+			
+			try:
+				configurations = open('config.yaml')
+
+			except IOError as exc:
+
+				print '>>InstagramPrinter: Could not open config.yaml'
 		
 			data = yaml.safe_load(configurations)
 
@@ -347,6 +352,6 @@ class Api:
 		
 		except KeyError as exc:
 			
-			print '>>TwitterPrinter: Validation error. Check credientals'
+			print '>>InstagramPrinter: Validation error. Check credientals'
 
 			sys.exit(0)
