@@ -14,3 +14,5 @@ delayTime: 30.0
 pageTitle: 'InstagramPrinter'
 
 templateFileName: 'main.html'
+
+footerImage: ''

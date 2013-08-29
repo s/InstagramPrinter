@@ -1,0 +1,108 @@
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<style>
+
+	html{
+		font-family: ProximaNovaBold;
+		font-size: 13px;
+		line-height:90%;
+	}
+	
+	#comment{
+		font-family: ProximaNova;
+	}
+	
+	
+
+
+	@font-face {
+	        font-family: ProximaNova;
+	        src: url(../assets/font/proximanova-webfont.ttf);
+   	}
+   		
+   	@font-face {
+	   font-family: ProximaNovaBold;
+	   src: url(../assets/font/proximanova-bold-webfont.ttf);
+   	}
+   		
+   		
+    @page {
+        size: a6 portrait;
+          		
+   		
+
+        @frame header_frame {
+            -pdf-frame-content: photo;
+            left: 4pt; width: 615pt; top: 2pt; height: 615pt;
+        }
+        
+        @frame profile_frame {
+            -pdf-frame-content: profile;
+            left: 4pt; width: 300pt; top: 304pt; height: 300pt;
+        }
+        
+        @frame username_frame {
+            -pdf-frame-content: username;
+            left: 38pt; width: 100pt; top: 302pt; height: 30pt;
+        }
+        
+        @frame date_frame {
+            -pdf-frame-content: date;            
+            left: 192pt; width: 100pt; top: 302pt; height: 100pt;
+            text-align: right;
+        }
+        
+         @frame comment_frame {
+            -pdf-frame-content: comment;
+            left: 38pt; width: 256pt; top: 316pt; height: 100pt;
+
+            
+        }
+        
+         @frame footer_frame {
+            -pdf-frame-content: footer;
+            left: 5pt;  top: 395pt; height: 100pt;
+        }
+               		  		
+    }
+       	
+</style>
+<head>
+
+
+	<body>
+	
+	  	<div id="photo">
+    		<img src='../assets/data/{$photoUrl}' width="382"/>  	
+    	</div>
+    	
+    	<div id="profile">
+			<img src='../assets/data/{$postOwnerAvatar}' width='40' height='40' />
+		</div>
+	 
+		 <div id="username" class="username" style="color:#517fa4;font-weight:bold;font-size:15px;">
+			{$postOwner}
+		 </div>
+		 
+		 <div id="date" style="color:#8F8F8F; font-weight: bold; font-size: 13px;text-align:right">
+			{$postDate}
+		 </div>
+	   
+	    <div id='comment' style="color:#8F8F8F; font-size: 13px; height: 150px">
+	    {$comments}
+			{$commentText}
+		{/$comments}
+
+		</div>
+		
+		<div id='footer' style="text-align:center;">
+			<img src='../assets/img/{$footerImage}' width='150px' />
+		</div>
+
+		
+		
+	</body>
+
+</html>

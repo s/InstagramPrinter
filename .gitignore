@@ -5,3 +5,9 @@
 outputs/views/*
 
 config.yaml
+
+outputs/assets/data/*
+
+outpust/printed/*
+
+outputs/logs/*
