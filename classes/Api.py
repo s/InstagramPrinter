@@ -259,10 +259,10 @@ class Api:
 			
 			
 			self.log('Downloading photo: ' + standartResolutionImage['url'])
-			urllib.urlretrieve(standartResolutionImage['url'],  "outputs/assets/img/"+ str(data['id'])+".jpg")
+			urllib.urlretrieve(standartResolutionImage['url'],  "outputs/assets/data/"+ str(data['id'])+".jpg")
 			
 			self.log('Downloading avatar: ' + user['profile_picture'])
-			urllib.urlretrieve(user['profile_picture'],  "outputs/assets/img/"+ str(user['id'])+".jpg")
+			urllib.urlretrieve(user['profile_picture'],  "outputs/assets/data/"+ str(user['id'])+".jpg")
 			
 			
 			template = template.replace( '{$title}', self.pageTitle )
