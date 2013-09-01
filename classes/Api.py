@@ -7,16 +7,15 @@
 # Instagram Printer
 #################################################
 
-import httplib, urllib2, json, time, sys, shutil, os, stat, re, datetime, yaml, logging
-
-from datetime import date
+import httplib, urllib2, json, time, sys, shutil, os, stat, re, datetime, yaml
 
 
 class Api:
 
 
 	############ static members ############
-	
+
+
 	# Instagram Api Url
 	apiUrl = 'api.instagram.com'
 
@@ -37,6 +36,10 @@ class Api:
 	#Output directory
 	outputDirectory = 'outputs/'
 
+
+
+
+
 	
 	############ dynamic members from config.yaml ############
 
@@ -54,10 +57,6 @@ class Api:
 	#Html file page title
 	pageTitle = ''
 	
-	minTagId=''
-	
-	footerImage= ''
-	
 
 	##################
 	# method __init__
@@ -67,13 +66,9 @@ class Api:
 	##################
 
 	def __init__(self):
-	
-		timestamp= str(date.today().strftime('%d_%m_%Y'))
-		
-		logging.basicConfig(format="%(asctime)s %(message)s",filename=self.outputDirectory+'logs/'+timestamp+'_log.txt',level=logging.DEBUG)
-		
-		self.log('InstagramPrinter: Initializing')
-		
+
+		print '>>InstagramPrinter: Initializing'
+
 		self.get_configurations()
 		
 		#replacing hashtag with the reserved string
@@ -82,21 +77,22 @@ class Api:
 
 		#replacing access token with the reserved string
 		self.apiPath = self.apiPath.replace( '{$accessToken}' , self.accessToken )
-		
-		
-		if self.minTagId != '':
-			self.apiPath+='&min_id=' + self.minTagId
 
 		if True is self.check_network():
 
-				while self.apiConnectionFlag is 1:
+			while 1:
+
+				while self.apiConnectionFlag is 1: #waits until current process is over
 					pass
 
 				self.connect_to_api()
 
+				print '>>InstagramPrinter: Application will sleep for ' + str(self.delayTime) + ' seconds.'
+				
+				time.sleep( float(self.delayTime) )
 		else:
 
-			self.log('No network connection')
+			print '>>InstagramPrinter: No network connection'
 
 
 	##################
@@ -108,7 +104,7 @@ class Api:
 
 	def connect_to_api(self):
 
-		self.log('Connecting To Api')
+		print '>>InstagramPrinter: Connecting To Api'
 		
 		self.apiConnectionFlag = 1
 		#check network connection
@@ -117,16 +113,12 @@ class Api:
 			httpsObject = httplib.HTTPSConnection( self.apiUrl )
 			
 			httpsObject.request(self.method, self.apiPath)
-			
-			#print self.apiPath
 
-			response = httpsObject.getresponse()
-			
-			
+			response = httpsObject.getresponse()			
 			
 			if not response.status is 200:
-			
-				self.log('HTTP Response Code is not 200')
+
+				print '>>InstagramPrinter: HTTP Response Code is not 200'
 
 				pass
 
@@ -138,7 +130,7 @@ class Api:
 
 		except Exception as exc:
 
-			self.log("An Exception Raised During Connecting To Api:" + str(exc))
+			print '>>InstagramPrinter: An Exception Raised During Connecting To Api:' + str(exc)
 
 			sys.exit(0)
 
@@ -151,13 +143,13 @@ class Api:
 	##################
 
 	def process_data( self, responseJson ):
-	
-		self.log("Processing Data")
+		
+		print '>>InstagramPrinter: Processing Data'
 		
 		try:
 
 			response = json.loads( responseJson )
-			
+
 			data = response['data']
 			
 			if len(data):
@@ -165,36 +157,15 @@ class Api:
 				for d in data:
 						
 					self.save_data_as_html( d )
-					
-				
-				if 'next_min_id' in response['pagination']:
-					
-					tagFile = open('minTagId.yaml','w')
-			
-					tagFile.write(response['pagination']['next_min_id'])
-				
-					tagFile.close()
-				
-				else:
-					self.log("Nothing new to print")
-				
-				
+
 			else: 
-				self.log("No photos fetched")
 				
-	
-			self.log('Sleep time before restart ' + str(self.delayTime) + ' seconds.')
-							
-			time.sleep( float(self.delayTime) )
-			
-			self.log('Quiting, byee...')
-				
-			self.restart_program()
+				print '>>InstagramPrinter: No photos fetched'
 
 		except Exception as exc:
 			
-			self.log('An Exception Raised During process_data:' + str(exc))
-			
+			print '>>InstagramPrinter: An Exception Raised During process_data:' + str(exc)
+
 			sys.exit(0)
 	
 
@@ -207,15 +178,15 @@ class Api:
 
 	def save_data_as_html(self, data):
 		
-		#print '>>InstagramPrinter: Will Generate HTML if not exists before'	
+		print '>>InstagramPrinter: Will Generate HTML if not exists before'	
 
 		self.apiConnectionFlag = 0
 
-		fileName = str(data['id']) + '.html'
+		fileName = str(data['created_time']) + '.html'
 
 		source = self.outputDirectory + 'templates/' + self.templateFileName
 		
-		destination = self.outputDirectory + 'views/'
+		destination = self.outputDirectory + 'views/#' + self.searchHashtag + '/'
 
 		if not os.path.exists( destination ):
 			os.makedirs( destination )
@@ -233,12 +204,8 @@ class Api:
 		#image array for standart resolution
 		standartResolutionImage =  data['images']['standard_resolution']
 		
-		
-		#print destination + fileName
-		
 		if True == os.path.exists( destination + fileName):
-			self.log('File ' + fileName + ' already exists. Will pass this time.')
-			
+			print '>>InstagramPrinter: File ' + fileName + ' already exists. Will pass this time.'		
 			return 
 		else:
 			
@@ -249,37 +216,25 @@ class Api:
 					template = file.read()
 
 			except Exception as exc:
-			
-				self.log('An Exception Raised During generating view:' + str(exc))
+
+				print '>>InstagramPrinter: An Exception Raised During generating view:' + str(exc)
 
 				sys.exit(0)
-			
-			
-			import urllib
-			
-			
-			self.log('Downloading photo: ' + standartResolutionImage['url'])
-			urllib.urlretrieve(standartResolutionImage['url'],  "outputs/assets/data/"+ str(data['id'])+".jpg")
-			
-			self.log('Downloading avatar: ' + user['profile_picture'])
-			urllib.urlretrieve(user['profile_picture'],  "outputs/assets/data/"+ str(user['id'])+".jpg")
 			
 			
 			template = template.replace( '{$title}', self.pageTitle )
 
 			template = template.replace( '{$postOwner}', user['username'])
 
-			template = template.replace( '{$postOwnerAvatar}', str(user['id'])+".jpg")
+			template = template.replace( '{$postOwnerAvatar}', user['profile_picture'])
 
-			template = template.replace( '{$postDate}', datetime.datetime.fromtimestamp(int(data['created_time'])).strftime('%d.%m.%Y'))
+			template = template.replace( '{$postDate}', datetime.datetime.fromtimestamp(int(data['created_time'])).strftime('%d %B %Y, %H:%M'))
 
-			template = template.replace( '{$photoUrl}', str(data['id'])+".jpg" )
+			template = template.replace( '{$photoUrl}', standartResolutionImage['url'] )
 
 			template = template.replace( '{$photoWidth}', str(standartResolutionImage['width']) )
 
 			template = template.replace( '{$photoHeight}', str(standartResolutionImage['height']) )
-			
-			template = template.replace( '{$footerImage}', self.footerImage )
 
 			likeCount = len(likes['data'])
 
@@ -325,14 +280,14 @@ class Api:
 					commentsBlockWithData += commentsBlock
 
 				template = template.replace( '{$comments}' + template[startOfComments:endOfComments] + '{/$comments}', commentsBlockWithData )
-				
+
 			else:
 			
-				template = template.replace( '{$comments}' + template[startOfComments:endOfComments] + '{/$comments}', '' )
+				template = template.replace( '{$comments}' + template[startOfComments:endOfComments] + '{/$comments}', 'Yorum yapilmadi.' )
 				
-			fileName=  data['id']
+			
 
-			newFilePath = destination+fileName + '.html'
+			newFilePath = destination + data['created_time'] + '.html'
 			
 			if True == os.path.exists(newFilePath):
 				os.remove(newFilePath)
@@ -343,27 +298,8 @@ class Api:
 			newFile.write( template.encode('utf8') )
 			
 			newFile.close()
-			
-			self.log(fileName + '.html has been generated.' )
-			
-			self.convert_pdf( destination+fileName )
 
-	
-	##################
-	# method convert_to_pdf
-	# this method
-	# @param self
-	# @return void
-	##################
-	
-	def convert_pdf(self, fileName):
-		
-		import subprocess
-		
-		subprocess.call(["python "+os.getcwd()+"/classes/PdfConverter.py " + fileName], shell=True)
-		
-		self.log(fileName + '.pdf has been generated.' )	    
-			
+			print '>>InstagramPrinter: ' + data['created_time'] + '.html has been generated.' 
 
 	##################
 	# method check_network
@@ -376,7 +312,7 @@ class Api:
 
 		try:
 
-			response=urllib2.urlopen('http://google.com',timeout=100)
+			response=urllib2.urlopen('http://google.com',timeout=1)
 
 			return True
 
@@ -392,8 +328,13 @@ class Api:
 	def get_configurations(self):		
 		
 		try:
-		
-			configurations = open('config.yaml')
+			
+			try:
+				configurations = open('config.yaml')
+
+			except IOError as exc:
+
+				print '>>InstagramPrinter: Could not open config.yaml'
 		
 			data = yaml.safe_load(configurations)
 
@@ -407,37 +348,10 @@ class Api:
 
 			self.templateFileName = data['templateFileName']
 			
-			self.footerImage=data['footerImage']
-			
 			configurations.close()
-						
-			tagFile=open("minTagId.yaml")
-			
-			self.minTagId = tagFile.readline()
-			
-			tagFile.close()
-			
-			
 		
 		except KeyError as exc:
 			
-			self.log('Validation error. Check credientals')	  
+			print '>>InstagramPrinter: Validation error. Check credientals'
 
 			sys.exit(0)
-			
-			
-			
-			
-	def restart_program(self):
-	    """Restarts the current program.
-	    Note: this function does not return. Any cleanup action (like
-	    saving data) must be done before calling this function."""
-	    python = sys.executable
-	    os.execl(python, python, * sys.argv)
-	    
-	    
-	def log(self,message):
-	
-		logging.debug(message)
-		
-		print '>>InstagramPrinter: ' + message		
