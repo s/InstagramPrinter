@@ -15,7 +15,6 @@ $ cd ~/InstagramPrinter
 $ python app.py
 ```
 
-
 ##Skeletal
   <h3>Classes: (Core python files)</h3><br/>
     <code>Api.py</code> : Handles Instagram Api connection and generates html files.<br/>
